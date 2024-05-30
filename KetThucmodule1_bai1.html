@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num === 2) return true;
+            if (num % 2 === 0) return false;
+            let sqrtNum = Math.sqrt(num);
+            for (let i = 3; i <= sqrtNum; i += 2) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        function processArray() {
+            let a = [];
+            let b = [];
+            let input = prompt("Nhập mảng số nguyên a (phân tách bằng dấu phẩy):");
+            a = input.split(',').map(Number);
+            if (a.length > 50) {
+                alert("Số lượng phần tử nhập vào phải <= 50");
+                return;
+            }
+            for (let i = 0; i < a.length; i++) {
+                if (isPrime(a[i])) {
+                    b.push(a[i]);
+                }
+            }
+            
+            document.write("Mảng a là : " + a + "<br>");
+            document.write("Mảng b gồm những số nguyên tố của mảng a là  : " + b);
+        }
+
+        processArray();
+
+    </script>
+</body>
+
+</html>
