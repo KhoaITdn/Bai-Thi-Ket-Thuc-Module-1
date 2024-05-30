@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quản lý sổ tiết kiệm</title>
+</head>
+
+<body>
+    <h1>Quản lý sổ tiết kiệm</h1>
+    <button onclick="themSoTietKiemPrompt()">Thêm sổ tiết kiệm</button>
+    <button onclick="xoaSoTietKiemPrompt()">Xóa sổ tiết kiệm</button>
+    <div id="danhSachSoTietKiem"></div>
+
+    <script>
+        class SoTietKiem {
+            constructor(maSo, loaiTietKiem, hoTenKhachHang, chungMinhNhanDan, ngayMoSo, soTienGui) {
+                this.maSo = maSo;
+                this.loaiTietKiem = loaiTietKiem;
+                this.hoTenKhachHang = hoTenKhachHang;
+                this.chungMinhNhanDan = chungMinhNhanDan;
+                this.ngayMoSo = ngayMoSo;
+                this.soTienGui = soTienGui;
+            }
+        }
+
+        let danhSachSoTietKiem = [];
+
+        function themSoTietKiemPrompt() {
+            let maSo = prompt("Nhập mã sổ:");
+            let loaiTietKiem = prompt("Nhập loại tiết kiệm:");
+            let hoTenKhachHang = prompt("Nhập họ tên khách hàng:");
+            let chungMinhNhanDan = prompt("Nhập chứng minh nhân dân:");
+            let ngayMoSo = prompt("Nhập ngày mở sổ:");
+            let soTienGui = prompt("Nhập số tiền gửi:");
+            let soTietKiem = new SoTietKiem(maSo, loaiTietKiem, hoTenKhachHang, chungMinhNhanDan, ngayMoSo, soTienGui);
+            let message = themSoTietKiem(soTietKiem);
+            alert(message);
+            hienThiDanhSachSoTietKiem();
+        }
+
+        function xoaSoTietKiemPrompt() {
+            let maSo = prompt("Nhập mã sổ muốn xóa:");
+            if (confirm("Bạn có chắc muốn xóa sổ tiết kiệm này?")) {
+                let message = xoaSoTietKiem(maSo);
+                alert(message);
+                hienThiDanhSachSoTietKiem();
+            }
+        }
+
+        function themSoTietKiem(soTietKiem) {
+            for (let i = 0; i < danhSachSoTietKiem.length; i++) {
+                if (danhSachSoTietKiem[i].maSo === soTietKiem.maSo) {
+                    return "Mã sổ tiết kiệm đã tồn tại trong danh sách.";
+                }
+            }
+            danhSachSoTietKiem.push(soTietKiem);
+            return "Thêm sổ tiết kiệm thành công!";
+        }
+
+        function xoaSoTietKiem(maSo) {
+            for (let i = 0; i < danhSachSoTietKiem.length; i++) {
+                if (danhSachSoTietKiem[i].maSo === maSo) {
+                    danhSachSoTietKiem.splice(i, 1);
+                    return "Xóa sổ tiết kiệm thành công!";
+                }
+            }
+            return "Mã sổ tiết kiệm không tồn tại trong danh sách.";
+        }
+
+        function hienThiDanhSachSoTietKiem() {
+            let danhSachDiv = document.getElementById("danhSachSoTietKiem");
+            danhSachDiv.innerHTML = "";
+            for (let i = 0; i < danhSachSoTietKiem.length; i++) {
+                danhSachDiv.innerHTML += "<p>" + JSON.stringify(danhSachSoTietKiem[i]) + "</p>";
+            }
+        }
+    </script>
+</body>
+
+</html>
