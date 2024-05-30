@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 2</title>
+</head>
+
+<body>
+    <script>
+
+        function Nhap_phan_so() {
+            let Tu_So = +prompt("Nhập vào tử số:");
+            let Mau_So = +prompt("Nhập vào mẫu số:");
+            return [(Tu_So), (Mau_So)];
+        }
+
+        function So_Sanh_phan_so(phanso_1, phanso_2) {
+
+            if (phanso_1[1] === 0 || phanso_2[1] === 0) {
+                return "Mẫu số không thể bằng 0";
+            }
+
+            return phanso_1[0] * phanso_2[1] === phanso_2[0] * phanso_1[1];
+        }
+
+
+        let phanso_1 = Nhap_phan_so();
+        let phanso_2 = Nhap_phan_so();
+        document.write(So_Sanh_phan_so(phanso_1, phanso_2));
+
+
+    </script>
+</body>
+
+</html>
